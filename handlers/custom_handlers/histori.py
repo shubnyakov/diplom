@@ -7,6 +7,7 @@ from states.user_states import UserInputState
 
 @bot.message_handler(commands=['history'])
 def history(message: Message) -> None:
+
     """
         Обработчик команд, срабатывает на команду /history
         Обращается к базе данных и выдает в чат запросы пользователя
@@ -41,10 +42,9 @@ def input_city(message: Message) -> None:
             if int(message.text) == item[0] and item[3] == 'yes':
                 photo_need = 'yes'
 
-        if photo_need != 'yes':
-            bot.send_message(message.chat.id, 'Пользователь выбирал вариант "без фото"')
-
         if int(message.text) in number_query:
+            if photo_need != 'yes':
+                bot.send_message(message.chat.id, 'Пользователь выбирал вариант "без фото"')
             history_dict = database.read_from_db.get_history_response(message.text)
             logger.info('Выдаем результаты выборки из базы данных')
             for hotel in history_dict.items():
@@ -62,6 +62,7 @@ def input_city(message: Message) -> None:
                     bot.send_media_group(message.chat.id, medias)
                 else:
                     bot.send_message(message.chat.id, caption)
+            bot.send_message(message.chat.id, 'Введите следующий номер интересующего вас варианта или команду:')
         else:
             bot.send_message(message.chat.id, 'Ошибка! Вы ввели число, которого нет в списке! Повторите ввод!')
     else:

@@ -1,3 +1,4 @@
+import config_data.config
 import database.add_to_bd
 from loader import bot
 from telebot.types import Message, Dict, InputMediaPhoto
@@ -122,4 +123,4 @@ def find_and_show_hotels(message: Message, data: Dict) -> None:
                 break
     else:
         bot.send_message(message.chat.id, f'Что-то пошло не так, код ошибки: {response_hotels.status_code}')
-    bot.send_message(message.chat.id, 'Поиск окончен!')
+    bot.send_message(message.chat.id, 'Поиск окончен!\nВыберите команду в меню')

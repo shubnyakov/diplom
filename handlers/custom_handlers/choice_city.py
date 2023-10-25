@@ -20,4 +20,4 @@ def destination_id_callback(call: CallbackQuery) -> None:
             data['destination_id'] = call.data
         bot.delete_message(call.message.chat.id, call.message.message_id)
         bot.set_state(call.message.chat.id, UserInputState.quantity_hotels)
-        bot.send_message(call.message.chat.id, 'Сколько вывести отелей в чат? Не более 15!')
+        bot.send_message(call.message.chat.id, 'Сколько вывести отелей в чат? Не более 25!')
