@@ -9,11 +9,11 @@ from states.user_states import UserInputState
 def history(message: Message) -> None:
 
     """
-        Обработчик команд, срабатывает на команду /history
-        Обращается к базе данных и выдает в чат запросы пользователя
-        по отелям.
-        : param message : Message
-        : return : None
+    Обработчик команд, срабатывает на команду /history
+    Обращается к базе данных и выдает в чат запросы пользователя
+    по отелям.
+    : param message : Message
+    : return : None
     """
     logger.info('Выбрана команда history!')
     queries = database.read_from_db.read_query(message.chat.id)
